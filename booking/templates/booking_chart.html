@@ -20,15 +20,13 @@
             dataTable.addColumn({ type: 'date', id: 'Start' });
             dataTable.addColumn({ type: 'date', id: 'End' });
 
-            dataTable.addRows([
-            [ '310호', '김이름', '', new Date(0,0,0,12,0),  new Date(0,0,0,13,30) ],
-            [ '311호', '김2름', '', new Date(0,0,0,9,0),  new Date(0,0,0,10,30) ],
-            [ '312호', '김삼름', '', new Date(0,0,0,9,0),  new Date(0,0,0,11,30) ],
-            [ '313호', '김3름', '', new Date(0,0,0,14,0),  new Date(0,0,0,15,30) ],
-            [ '314호', '박이름', '', new Date(0,0,0,12,0),  new Date(0,0,0,13,30) ],
-            [ '315호', '이이름', '', new Date(0,0,0,16,0),  new Date(0,0,0,18,30) ],
-            [ '316호', '김3름', '', new Date(0,0,0,12,0),  new Date(0,0,0,13,30) ],
-            [ '317호', '김이름', '', new Date(0,0,0,20,0),  new Date(0,0,0,22,30) ]]);
+            var data = [];
+
+            {% for book in booking_list %}
+                data.push(['{{ book.0 }}', '{{ book.1 }}', '{{ book.2 }}', {{ book.3 }}, {{ book.4 }}]);
+            {% endfor %}
+
+            dataTable.addRows(data)
 
             var options = {
                 width: 1000,
@@ -50,5 +48,6 @@
     <h1><a href="">오늘의 예약현황</a></h1>
 
     <div id="timeline"></div>
+
 </body>
 </html>
