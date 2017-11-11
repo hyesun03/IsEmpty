@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    {% if user.is_active %}
+    <h2> Welcome, {{user.username}} </h2>
+    <a href="./logout">로그아웃</a>
+
+    <!-- 로그인 되어있지 않은 경우 -->
+    {% else %}
+    {% if form.errors %}
+    <!-- 에러발생시 -->
+    <p>ID나 비밀번호가 일치하지 않습니다.</p>
+    {% endif %}
+    <!-- 로그인 폼 -->
+    <form method="post" action="./">
+    {% csrf_token %}
+        <input type="hidden" name="next" value="" />
+        <label for="{{ form.name.id_for_label }}">name</label>
+        <input class="form-control" id="{{ form.username.id_for_label }}" maxlength="15" name="{{ form.username.html_name }}" type="text" />
+        <label for="{{ form.password.id_for_label }}">패스워드</label>
+        <input class="form-control" id="{{ form.password.id_for_label }}" maxlength="120" name="{{ form.password.html_name }}" type="password" />
+    <button type="submit">로그인</button>
+    </form>
+    {% endif %}
+    <!--<form id="login" method="post" action="./login">-->
+        <!--{% csrf_token %}-->
+        <!--{{ form.as_table }}-->
+    <!--</form>-->
+</body>
+</html>

@@ -5,6 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-    join page
+    <form id="signup" method="post" action="./signup">
+        {% csrf_token %}
+        {{ userform.as_p }}
+    </form>
 </body>
 </html>
