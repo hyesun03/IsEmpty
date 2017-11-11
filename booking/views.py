@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, View, ListView
+from django.http import HttpResponse
+from booking.models import Booking
 
 
 class HomeView(TemplateView):
@@ -8,3 +10,4 @@ class HomeView(TemplateView):
 
 class BookingChartView(TemplateView):
     template_name = "booking_chart.html"
+
