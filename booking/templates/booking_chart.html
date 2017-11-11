@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>예약 현황</title>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', {'packages':['timeline']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var container = document.getElementById('timeline');
+            var chart = new google.visualization.Timeline(container);
+            var dataTable = new google.visualization.DataTable();
+
+            dataTable.addColumn({ type: 'string', id: 'Day' });
+            dataTable.addColumn({ type: 'string', id: 'Name' });
+            dataTable.addColumn({ type: 'string', role: 'tooltip' });
+            dataTable.addColumn({ type: 'date', id: 'Start' });
+            dataTable.addColumn({ type: 'date', id: 'End' });
+
+            dataTable.addRows([
+            [ '310호', '김이름', '', new Date(0,0,0,12,0),  new Date(0,0,0,13,30) ],
+            [ '311호', '김2름', '', new Date(0,0,0,9,0),  new Date(0,0,0,10,30) ],
+            [ '312호', '김삼름', '', new Date(0,0,0,9,0),  new Date(0,0,0,11,30) ],
+            [ '313호', '김3름', '', new Date(0,0,0,14,0),  new Date(0,0,0,15,30) ],
+            [ '314호', '박이름', '', new Date(0,0,0,12,0),  new Date(0,0,0,13,30) ],
+            [ '315호', '이이름', '', new Date(0,0,0,16,0),  new Date(0,0,0,18,30) ],
+            [ '316호', '김3름', '', new Date(0,0,0,12,0),  new Date(0,0,0,13,30) ],
+            [ '317호', '김이름', '', new Date(0,0,0,20,0),  new Date(0,0,0,22,30) ]]);
+
+            var options = {
+                width: 1000,
+                height: 400,
+                hAxis: {
+                    minValue: new Date(0,0,0,9,0),
+                    maxValue: new Date(0,0,0,24,0)
+                },
+                timeline: { colorByRowLabel: true }
+            };
+
+            chart.draw(dataTable, options);
+        }
+    </script>
+
+
+</head>
+<body>
+    <h1><a href="">오늘의 예약현황</a></h1>
+
+    <div id="timeline"></div>
+</body>
+</html>
