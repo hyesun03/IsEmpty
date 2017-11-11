@@ -6,4 +6,5 @@ class HomeView(TemplateView):
     template_name = "home.html"
 
 
-
+class BookingChartView(TemplateView):
+    template_name = "booking_chart.html"
