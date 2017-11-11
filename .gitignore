@@ -122,3 +122,6 @@ bower_components/
 docs/_build
 build
 dist
+
+# sqlite3
+**/*.sqlite3
