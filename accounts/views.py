@@ -1,19 +1,26 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.views.generic import TemplateView, FormView
+from django.shortcuts import render, redirect
+from django.views.generic import TemplateView, FormView, View
 from django.core.urlresolvers import reverse
-from django.contrib.auth.forms import UserCreationForm
+from .models import User
+from .form import UserForm
 # Create your views here.
 
-class Signup(FormView):
-    def get(self, request, *args, **kwargs):
-        userform = UserCreationForm()
-        return render(request, 'registration/signup.html', { "userform" : userform })
-    def post(self, request, *args, **kwargs):
-        userform = UserCreationForm(request.POST)
+class Signup(View):
+
+    def get(self, request):
+        userform = UserForm()
+        return render(request, 'registration/signup.html', { "form" : userform })
+    
+    def post(self, request):
+        userform = UserForm(request.POST)
         if userform.is_valid():
             userform.save()
-            return reverse("success_signup")
+            return redirect('/signup_ok')
+        else:
+            print(userform.errors)
+            return render(request, 'registration/signup.html', {"form": userform})
+
 class Signup_ok(TemplateView):
     template_name = 'registration/success_signup.html'
 
