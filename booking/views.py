@@ -25,8 +25,8 @@ class BookingChartView(View):
         booking_list.append(['316호', '', '', 'new Date(0,0,0,9,0)', 'new Date(0,0,0,9,0)'])
 
         for i in data:
-            start = "new Date(0,0,0," + str(i.start_time.hour) + "," + str(i.start_time.minute) + ")"
-            end = "new Date(0,0,0," + str(i.end_time.hour) + "," + str(i.end_time.minute) + ")"
+            start = "new Date(0,0,0," + str(i.start_hour) + "," + str(i.start_min) + ")"
+            end = "new Date(0,0,0," + str(i.end_hour) + "," + str(i.end_min) + ")"
             booking_list.append([i.room.room_number+"호", i.user.name, '', start, end])
 
         return render(request, self.template_name, {'booking_list': booking_list})
