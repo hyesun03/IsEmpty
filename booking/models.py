@@ -10,12 +10,22 @@ class Room(models.Model):
 
 
 class Booking(models.Model):
+    HOURS = (
+        ('9', '9'), ('10', '10'), ('11', '11'), ('12', '12'), ('13', '13'), ('14', '14'), ('15', '15'), ('16', '16'),
+        ('17', '17'), ('18', '18'), ('19', '19'), ('20', '20'), ('21', '21'), ('22', '22'), ('23', '23'), ('24', '24')
+    )
+    MINUTES = (
+        ('00', '00'), ('30', '30')
+    )
+
     room = models.ForeignKey('Room')
     user = models.ForeignKey('accounts.User')
 
     book_date = models.DateField(default=timezone.now())
-    start_time = models.TimeField(default=timezone.now())
-    end_time = models.TimeField()
+    start_hour = models.CharField(choices=HOURS, default='18', max_length=2)
+    start_min = models.CharField(choices=MINUTES, default='00', max_length=2)
+    end_hour = models.CharField(choices=HOURS, default='18', max_length=2)
+    end_min = models.CharField(choices=MINUTES, default='00', max_length=2)
 
     purpose = models.CharField(max_length=50)
     participants = models.PositiveIntegerField()
