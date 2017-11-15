@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, View, ListView
-from django.http import HttpResponse
+from django.views.generic import TemplateView, View, FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from booking.models import Booking
+from booking.forms import BookingCreateForm
 
 
 class HomeView(TemplateView):
@@ -30,3 +32,15 @@ class BookingChartView(View):
             booking_list.append([i.room.room_number+"호", i.user.name, '', start, end])
 
         return render(request, self.template_name, {'booking_list': booking_list})
+
+
+class BookingCreateView(FormView, LoginRequiredMixin):
+    form_class = BookingCreateForm
+    template_name = "booking_add.html"
+    success_url = "/booking/charts/"
+
+    def form_valid(self, form):
+        new_booking = form.save(commit=False)
+        new_booking.save()
+
+        return super(BookingCreateView, self).form_valid(form)
