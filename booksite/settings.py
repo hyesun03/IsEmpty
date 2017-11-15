@@ -31,14 +31,14 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
+    'booking',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'accounts',
-    'booking',
+    'django.contrib.staticfiles'
 ]
 
 MIDDLEWARE = [
@@ -129,4 +129,4 @@ AUTH_USER_MODEL = 'accounts.User'
 
 #Login REDIRECT
 
-LOGIN_REDIRECT_URL = '/ok'
+LOGIN_REDIRECT_URL = '/profile'
