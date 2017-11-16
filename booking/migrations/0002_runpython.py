@@ -23,13 +23,13 @@ def forwards_func(apps, schema_editor):
         Booking(room_id=3, user_id=5, book_date=timezone.datetime(2017, 11, 10).date(), start_hour="19", start_min="0",
                 end_hour="22", end_min="30", purpose="시험기간 공부", participants=10),
         Booking(room_id=4, user_id=1, book_date=timezone.datetime(2017, 11, 11).date(), start_hour="16", start_min="0",
-                end_hour="20", end_min="0", purpose="관리자예약", participants=4),
+                end_hour="19", end_min="0", purpose="관리자예약", participants=4),
         Booking(room_id=4, user_id=4, book_date=timezone.datetime(2017, 11, 11).date(), start_hour="19", start_min="0",
                 end_hour="21", end_min="0", purpose="11일 예약", participants=6),
         Booking(room_id=4, user_id=3, book_date=timezone.datetime(2017, 11, 12).date(), start_hour="18", start_min="0",
                 end_hour="20", end_min="0", purpose="팀 프로젝트~", participants=6),
-        Booking(room_id=4, user_id=3, book_date=timezone.datetime(2017, 11, 12).date(), start_hour="19", start_min="30",
-                end_hour="21", end_min="30", purpose="팀 프로젝트해요", participants=4),
+        Booking(room_id=4, user_id=3, book_date=timezone.datetime(2017, 11, 12).date(), start_hour="20", start_min="00",
+                end_hour="22", end_min="30", purpose="팀 프로젝트해요", participants=4),
     ])
 
 

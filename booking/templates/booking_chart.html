@@ -47,6 +47,14 @@
 <body>
     <h1><a href="">오늘의 예약현황</a></h1>
 
+    <div>
+        <form method="GET">
+            <input type="text" name="datepick" placeholer="날짜입력">
+            <button type="submit">이동</button>
+            <button type="button" onclick="window.location.href='/booking/create/'">예약추가</button>
+        </form>
+    </div>
+
     <div id="timeline"></div>
 
 </body>
