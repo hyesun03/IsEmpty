@@ -5,11 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-
+    <form id="login" method="post" action="./">
     {% if user.is_active %}
-    <h2> Welcome, {{user.username}} </h2>
-    <a href="/logout">로그아웃</a>
-
+        <script>
+            location.href="/profile";
+        </script>
     <!-- 로그인 되어있지 않은 경우 -->
     {% else %}
     {% if form.errors %}
@@ -30,9 +30,5 @@
         <button type="button"><a href="/signup">회원가입</a></button>
     </form>
     {% endif %}
-    <!--<form id="login" method="post" action="./login">-->
-        <!--{% csrf_token %}-->
-        <!--{{ form.as_table }}-->
-    <!--</form>-->
 </body>
 </html>

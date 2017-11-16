@@ -11,7 +11,7 @@ class Signup(View):
     def get(self, request):
         userform = UserForm()
         return render(request, 'registration/signup.html', { "form" : userform })
-    
+
     def post(self, request):
         userform = UserForm(request.POST)
         if userform.is_valid():
@@ -24,5 +24,5 @@ class Signup(View):
 class Signup_ok(TemplateView):
     template_name = 'registration/success_signup.html'
 
-class Ok(TemplateView):
-    template_name = 'base.html'
+class Profile(TemplateView):
+    template_name = 'registration/profile.html'

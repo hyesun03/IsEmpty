@@ -1,0 +1,10 @@
+<ul>
+  {% if user.is_active %}
+    <li> {{user.username}}</a></li>
+    <li>내 정보 변경(링크 아직 안걸었음)</li>
+    <li><a href="./password_change">비밀번호 변경</a></li>
+    <li><a href="/logout">Logout</a></li>
+  {% else %}
+  <li><a href="login"> Login</a></li>
+  {% endif %}
+</ul>
