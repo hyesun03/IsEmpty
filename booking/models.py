@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from utils.models import AliveManager
 
 
 class Room(models.Model):
@@ -21,6 +22,9 @@ class Booking(models.Model):
     room = models.ForeignKey('Room')
     user = models.ForeignKey('accounts.User')
 
+    is_delete = models.BooleanField(default=False)
+    delete_date = models.DateTimeField(blank=True, null=True)
+
     book_date = models.DateField(default=timezone.now())
     start_hour = models.CharField(choices=HOURS, default='18', max_length=2)
     start_min = models.CharField(choices=MINUTES, default='00', max_length=2)
@@ -29,3 +33,6 @@ class Booking(models.Model):
 
     purpose = models.CharField(max_length=50)
     participants = models.PositiveIntegerField()
+
+    objects = models.Manager()
+    alive_objects = AliveManager()
