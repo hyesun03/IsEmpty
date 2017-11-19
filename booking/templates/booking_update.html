@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>예약 수정</title>
+</head>
+<body>
+    <h1>아래 예약을 수정하시겠습니까?</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">예약 수정</button>
+    </form>
+</body>
+</html>
