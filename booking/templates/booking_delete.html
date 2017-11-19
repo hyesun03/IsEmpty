@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>예약 삭제</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <h1>예약을 취소 하시겠습니까?</h1>
+        <p>유저 ID: {{ booking.user.username }}</p>
+        <p>강의실: {{ booking.room.room_number }}</p>
+        <p>예약일: {{ booking.book_date }}</p>
+
+        <input type="submit" value="예" />
+        <input type="submit" name="cancel" value="아니요" />
+    </form>
+</body>
+</html>
