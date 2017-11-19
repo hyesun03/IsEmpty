@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from utils.models import AliveManager
 
 
 class Room(models.Model):
@@ -32,3 +33,6 @@ class Booking(models.Model):
 
     purpose = models.CharField(max_length=50)
     participants = models.PositiveIntegerField()
+
+    objects = models.Manager()
+    alive_objects = AliveManager()

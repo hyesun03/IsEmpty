@@ -56,7 +56,7 @@ class BookingCreateView(FormView, LoginRequiredMixin):
         return super(BookingCreateView, self).form_valid(form)
 
 
-class DiggerDeleteView(LoginRequiredMixin, DeleteView):
+class BookingDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'booking_delete.html'
 
     def get_object(self, queryset=None):
@@ -71,3 +71,7 @@ class DiggerDeleteView(LoginRequiredMixin, DeleteView):
 
         # 마이페이지로 redirect하려고 했는데 없어서 임시로 보냄
         return HttpResponseRedirect('/booking/charts')
+
+
+class BookingUpdateView(LoginRequiredMixin, FormView):
+    pass
