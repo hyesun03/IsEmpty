@@ -86,3 +86,4 @@ class BookingUpdateView(LoginRequiredMixin, UpdateView):
         update_digger.save()
 
         return super(BookingUpdateView, self).form_valid(form)
+
