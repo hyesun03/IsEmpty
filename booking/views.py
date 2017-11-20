@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.views.generic import TemplateView, View, FormView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.utils import timezone
 from django.http import HttpResponseRedirect
+from django.template import RequestContext
 
 from booking.models import Booking
 from booking.forms import BookingCreateForm
@@ -87,3 +88,9 @@ class BookingUpdateView(LoginRequiredMixin, UpdateView):
 
         return super(BookingUpdateView, self).form_valid(form)
 
+
+def page_not_found(request):
+    response = render_to_response('booking/404.html', {}, content_instance=RequestContext(request))
+    response.status_code = 404
+
+    return response

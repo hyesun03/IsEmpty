@@ -2,7 +2,9 @@ from django.conf.urls import url
 
 from . import views
 
+
 app_name = 'booking'
+handler404 = 'views.page_not_found'
 
 urlpatterns = [
     url(r'^$', views.HomeView.as_view(), name='home'),
