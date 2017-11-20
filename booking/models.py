@@ -40,8 +40,54 @@ class Booking(models.Model):
     alive_objects = AliveManager()
 
     def clean(self):
-        if self.end_hour*60 + self.end_min <= self.start_hour*60 + self.start_min:
+        if int(self.end_hour)*60 + int(self.end_min) <= int(self.start_hour)*60 + int(self.start_min):
             raise ValidationError(_('적절하지 않은 시간입니다.'))
 
-        # 기존 예약과 비교하는 로직 필요
-ㅎ
+        # 여기 부터는 기존 예약과 비교하는 로직
+        date = self.book_date
+        books = Booking.alive_objects.filter(book_date=date, room=self.room_id)
+
+        if books:
+            time_array = make_time_array(books)
+            booking_validation(time_array, self)
+
+
+def make_time_array(booking_objects):
+    # 30개 크기의 배열을 만들고(9:00 - 24:00)
+    # 배열은 30분 단위로 한 칸씩이다.
+    time_array = []
+    for i in range(30):
+        time_array.append(0)
+
+    # 해당되는 시간에 배열 색칠(1로 바꿈)
+    for book in booking_objects:
+        # 색칠할 범위 인덱스
+        start_idx = (int(book.start_hour) - 9) * 2
+        end_idx = (int(book.end_hour) - 9) * 2
+
+        # min이 30이면 배열 한 칸 더 추가
+        if (int(book.start_min) == 30):
+            start_idx += 1
+        if (int(book.end_min) == 30):
+            end_idx += 1
+
+        # start_idx에서 end_idx까지 색칠
+        for i in range(start_idx, end_idx):
+            time_array[i] = 1
+
+    return time_array
+
+
+def booking_validation(current_booking_array, new_booking):
+    start_idx = (int(new_booking.start_hour) - 9) * 2
+    end_idx = (int(new_booking.end_hour) - 9) * 2
+
+    # min이 30이면 배열 한 칸 더 추가
+    if (int(new_booking.start_min) == 30):
+        start_idx += 1
+    if (int(new_booking.end_min) == 30):
+        end_idx += 1
+
+    for i in range(start_idx, end_idx):
+        if (current_booking_array[i] == 1):
+            raise ValidationError(_('이미 예약되어있는 시간대 입니다.'))
