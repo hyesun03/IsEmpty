@@ -1,4 +1,6 @@
+from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from utils.models import AliveManager
 
@@ -36,3 +38,10 @@ class Booking(models.Model):
 
     objects = models.Manager()
     alive_objects = AliveManager()
+
+    def clean(self):
+        if self.end_hour*60 + self.end_min <= self.start_hour*60 + self.start_min:
+            raise ValidationError(_('적절하지 않은 시간입니다.'))
+
+        # 기존 예약과 비교하는 로직 필요
+ㅎ
