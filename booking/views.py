@@ -89,8 +89,17 @@ class BookingUpdateView(LoginRequiredMixin, UpdateView):
         return super(BookingUpdateView, self).form_valid(form)
 
 
-def page_not_found(request):
-    response = render_to_response('booking/404.html', {}, content_instance=RequestContext(request))
-    response.status_code = 404
+class Custom404View(TemplateView):
+    template_name = "404.html"
 
-    return response
+    @classmethod
+    def get_rendered_view(cls):
+        as_view_fn = cls.as_view()
+
+        def view_fn(request):
+            response = as_view_fn(request)
+            response.status_code = 404
+            response.render()
+            return response
+
+        return view_fn
