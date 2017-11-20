@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.views.generic import TemplateView, View, FormView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.utils import timezone
 from django.http import HttpResponseRedirect
+from django.template import RequestContext
 
 from booking.models import Booking
 from booking.forms import BookingCreateForm
@@ -87,3 +88,18 @@ class BookingUpdateView(LoginRequiredMixin, UpdateView):
 
         return super(BookingUpdateView, self).form_valid(form)
 
+
+class Custom404View(TemplateView):
+    template_name = "404.html"
+
+    @classmethod
+    def get_rendered_view(cls):
+        as_view_fn = cls.as_view()
+
+        def view_fn(request):
+            response = as_view_fn(request)
+            response.status_code = 404
+            response.render()
+            return response
+
+        return view_fn
