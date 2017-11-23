@@ -46,13 +46,3 @@ class Info(View):
         except Exception:
             pass
         return render(request, 'registration/info.html', {"form": infoform})
-
-        # if infoform.is_valid():
-        #     print("info save")
-        #     infoform.save()
-        #     return render(request, 'registration/info.html', {"form": infoform})
-        # else:
-        #     print("error")
-        #     print(infoform.errors)
-        #     return render(request, 'registration/info.html', {"form": infoform})
-    #template_name = 'registration/info.html'
