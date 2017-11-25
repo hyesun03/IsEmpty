@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>404 Error</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+
+{% block title %}404 Error{% endblock %}
+
+{% block body %}
     <h1>유효하지 않은 URL 입니다.</h1>
-</body>
-</html>
+{% endblock %}

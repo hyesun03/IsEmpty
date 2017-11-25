@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>예약 삭제</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+
+{% block title %}예약 취소{% endblock %}
+
+{% block body %}
     <form action="" method="post">
         {% csrf_token %}
         <h1>아래 예약을 취소 하시겠습니까?</h1>
@@ -15,8 +20,7 @@
         <p>이용목적: {{ booking.purpose }}</p>
         <p>이용자수: {{ booking.participants }}</p>
 
-        <input type="submit" value="예" />
-        <input type="submit" name="cancel" value="아니요" />
+        <button type="submit" class="btn btn-primary">예</button>
+        <button type="submit" class="btn btn-danger" name="cancel">아니요</button>
     </form>
-</body>
-</html>
+{% endblock %}
