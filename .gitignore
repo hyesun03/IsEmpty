@@ -112,8 +112,8 @@ dev/files
 # ignore bower components
 bower_components/
 
-# collectstatic
-/static/
+## collectstatic
+#/booking/static/
 
 # Ignore Pycharm
 .idea/
