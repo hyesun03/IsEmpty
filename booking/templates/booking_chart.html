@@ -12,14 +12,18 @@
 {% block body %}
     <h1><a href="">오늘의 예약현황</a></h1>
 
-    <div>
-        <form method="GET">
-            <input type="text" name="datepick" placeholer="날짜입력">
-            <button type="submit">이동</button>
-            <button type="button" onclick="window.location.href='/booking/create/'">예약추가</button>
-        </form>
-    </div>
+    <form method="GET">
+        <div class="form-group row">
+            <div class="col-xs-3">
+                <input type="text" class="form-control" name="datepick" placeholer="날짜입력">
+            </div>
 
+            <button type="submit" class="btn btn-primary">이동</button>
+            <!--예약 추가버튼은 form 밖으로 빼내야 함-->
+            <button type="button" class="btn btn-primary" onclick="window.location.href='/booking/create/'">예약추가</button>
+        </div>
+    </form>
+    
     <div id="timeline"></div>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
