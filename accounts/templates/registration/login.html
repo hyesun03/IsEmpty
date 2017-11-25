@@ -1,34 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <form id="login" method="post" action="./">
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+
+{% block title %}로그인{% endblock %}
+
+{% block body %}
     {% if user.is_active %}
         <script>
             location.href="/profile";
         </script>
-    <!-- 로그인 되어있지 않은 경우 -->
     {% else %}
-    {% if form.errors %}
-    <!-- 에러발생시 -->
-    <p>ID나 비밀번호가 일치하지 않습니다.</p>
+        {% if form.errors %}
+            <p>ID나 비밀번호가 일치하지 않습니다.</p>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <label for="{{ form.username.id_for_label }}">username</label>
+            <input class="form-control" id="{{ form.username.id_for_label }}" maxlength="15" name="{{ form.username.html_name }}" type="text" />
+            </br>
+
+            <label for="{{ form.password.id_for_label }}">패스워드</label>
+            <input class="form-control" id="{{ form.password.id_for_label }}" maxlength="120" name="{{ form.password.html_name }}" type="password" />
+            </br>
+
+            <button type="submit" class="btn btn-primary">로그인</button>
+            <button type="submit" class="btn btn-default" name="cancel"><a href="/signup">회원가입</a></button>
+        </form>
     {% endif %}
-    <!-- 로그인 폼 -->
-    <br method="post" action="./">
-    {% csrf_token %}
-        <input type="hidden" name="next" value="" />
-        <label for="{{ form.username.id_for_label }}">username</label>
-        <input class="form-control" id="{{ form.username.id_for_label }}" maxlength="15" name="{{ form.username.html_name }}" type="text" />
-        </br>
-        <label for="{{ form.password.id_for_label }}">패스워드</label>
-        <input class="form-control" id="{{ form.password.id_for_label }}" maxlength="120" name="{{ form.password.html_name }}" type="password" />
-        </br>
-        <button type="submit">로그인</button>
-        <button type="button"><a href="/signup">회원가입</a></button>
-    </form>
-    {% endif %}
-</body>
-</html>
+{% endblock %}
