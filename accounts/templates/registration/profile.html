@@ -1,13 +1,29 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+
+{% block title %}마이페이지{% endblock %}
+
+
+{% block body %}
 <ul>
-  {% if user.is_active %}
-    <li> {{user.username}}</li>
-    <li><a href="./info">내 정보</a></li>
-    <li><a href="./password_change">비밀번호 변경</a></li>
-    <li>예약 현황(나중에 합쳐야됩니다)</li>
-    <li><a href="/logout">Logout</a></li>
-  {% else %}
-    <script>
+    {% if user.is_active %}
+        <h1> {{ user.username }}의 마이페이지 </h1>
+        <li><a href="./info">회원정보 수정</a></li>
+        <li><a href="./password_change">비밀번호 변경</a></li>
+        <li>예약 현황(나중에 합쳐야됩니다)</li>
+        <li><a href="/logout">로그아웃</a></li>
+    {% else %}
+        <script>
             location.href="/login";
         </script>
-  {% endif %}
+    {% endif %}
 </ul>
+{% endblock %}

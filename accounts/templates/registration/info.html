@@ -1,34 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+
+{% block title %}{{ user.username }} 회원정보 수정{% endblock %}
+
+{% block body %}
     {% if user.is_active %}
-    <form id="info" method="post" action="./info">
-        {% csrf_token %}
-        <li> 이름 : <input type="text" value="{{user.username}}" disabled></li>
-        <li>
-            <label for="{{ form.email.id_for_label }}">이메일 : </label>
-            <input class="form-control" id="{{ form.email.id_for_label }}" maxlength="30" name="{{ form.email.html_name }}" type="text" value="{{user.email}}"/></br>
-        </li>
-        <li> 학번 : <input type="text" value="{{user.student_id}}" disabled></li>
-        <li>
-            <label for="{{ form.phone_number.id_for_label }}">번호 : </label>
-            <input class="form-control" id="{{ form.phone_number.id_for_label }}" maxlength="15" name="{{ form.phone_number.html_name }}" type="text" value="{{user.phone_number}}"/></br>
-        </li>
-        <li>
-            <label for="{{ form.password.id_for_label }}">비밀번호 : </label>
-            <input class="form-control" id="{{ form.password.id_for_label }}" maxlength="30" name="{{ form.password.html_name }}" type="password"/></br>
-        </li>
-        <input type="submit" value="수정하기">
-        <a href="/profile">뒤로가기</a>
-    </form>
+        <form id="info" method="post" action="./info">
+            {% csrf_token %}
+            <label for="">ID</label>
+            <input class="form-control" type="text" value="{{ user.username }}" disabled />
+            <br>
+
+            <label for="{{ form.email.id_for_label }}">이메일</label>
+            <input class="form-control" id="{{ form.email.id_for_label }}" maxlength="30" name="{{ form.email.html_name }}" type="text" value="{{ user.email }}" />
+            <br>
+
+            <label for="">학번 : </label>
+            <input class="form-control" type="text" value="{{ user.student_id }}" disabled />
+            <br>
+
+            <label for="{{ form.phone_number.id_for_label }}">연락처</label>
+            <input class="form-control" id="{{ form.phone_number.id_for_label }}" maxlength="15" name="{{ form.phone_number.html_name }}" type="text" value="{{user.phone_number}}" />
+            <br>
+
+
+            <label for="{{ form.password.id_for_label }}">비밀번호</label>
+            <input class="form-control" id="{{ form.password.id_for_label }}" maxlength="30" name="{{ form.password.html_name }}" type="password" />
+            <br>
+
+            <button type="submit" class="btn btn-primary">수정하기</button>
+            <button type="submit" class="btn btn-default" name="cancel"><a href="/profile">뒤로가기</a></button>
+        </form>
     {% else %}
         <script>
             location.href="/login";
         </script>
     {% endif %}
-</body>
-</html>
+{% endblock %}
