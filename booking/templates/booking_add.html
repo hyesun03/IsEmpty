@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+
+{% block title %}예약 추가{% endblock %}
+
+{% block body %}
+    <h1>예약 추가</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">예약 추가</button>
+        {% endbuttons %}
+    </form>
+
+    <script>
+    var start_hour = document.getElementById("id_start_hour");
+    var start_min = document.getElementById("id_start_min");
+    var end_hour = document.getElementById("id_end_hour");
+    var end_min = document.getElementById("id_end_min");
+
+    var prev = [start_hour.value, start_min.value, end_hour.value, end_min.value]
+
+    start_hour.addEventListener("change", function() {
+        timeValidation();
+    });
+    start_min.addEventListener("change", function() {
+        timeValidation();
+    });
+    end_hour.addEventListener("change", function() {
+        timeValidation();
+    });
+    end_min.addEventListener("change", function() {
+        timeValidation();
+    });
+
+    function timeValidation() {
+        if(Number(end_hour.value)*60 + Number(end_min.value) <= Number(start_hour.value)*60 + Number(start_min.value)) {
+            alert("적절하지 않은 시간입니다.");
+            start_hour.value = prev[0];
+            start_min.value = prev[1];
+            end_hour.value = prev[2];
+            end_min.value = prev[3];
+        }
+        else {
+            prev[0] = start_hour.value;
+            prev[1] = start_min.value;
+            prev[2] = end_hour.value;
+            prev[3] = end_min.value;
+        }
+    }
+
+</script>
+{% endblock %}

@@ -1,8 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>예약 현황</title>
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+
+{% block title %}예약 현황{% endblock %}
+
+{% block body %}
+    <h1><a href="">오늘의 예약현황</a></h1>
+
+    <form method="GET">
+        <div class="form-group row">
+            <div class="col-xs-3">
+                <input type="text" class="form-control" name="datepick" placeholer="날짜입력">
+            </div>
+
+            <button type="submit" class="btn btn-primary">이동</button>
+            <!--예약 추가버튼은 form 밖으로 빼내야 함-->
+            <button type="button" class="btn btn-primary" onclick="window.location.href='/booking/create/'">예약추가</button>
+        </div>
+    </form>
+
+    <div id="timeline" style="width:100%;min-height:450px;"></div>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
@@ -20,19 +42,15 @@
             dataTable.addColumn({ type: 'date', id: 'Start' });
             dataTable.addColumn({ type: 'date', id: 'End' });
 
-            dataTable.addRows([
-            [ '310호', '김이름', '', new Date(0,0,0,12,0),  new Date(0,0,0,13,30) ],
-            [ '311호', '김2름', '', new Date(0,0,0,9,0),  new Date(0,0,0,10,30) ],
-            [ '312호', '김삼름', '', new Date(0,0,0,9,0),  new Date(0,0,0,11,30) ],
-            [ '313호', '김3름', '', new Date(0,0,0,14,0),  new Date(0,0,0,15,30) ],
-            [ '314호', '박이름', '', new Date(0,0,0,12,0),  new Date(0,0,0,13,30) ],
-            [ '315호', '이이름', '', new Date(0,0,0,16,0),  new Date(0,0,0,18,30) ],
-            [ '316호', '김3름', '', new Date(0,0,0,12,0),  new Date(0,0,0,13,30) ],
-            [ '317호', '김이름', '', new Date(0,0,0,20,0),  new Date(0,0,0,22,30) ]]);
+            var data = [];
+
+            {% for book in booking_list %}
+                data.push(['{{ book.0 }}', '{{ book.1 }}', '{{ book.2 }}', {{ book.3 }}, {{ book.4 }}]);
+            {% endfor %}
+
+            dataTable.addRows(data)
 
             var options = {
-                width: 1000,
-                height: 400,
                 hAxis: {
                     minValue: new Date(0,0,0,9,0),
                     maxValue: new Date(0,0,0,24,0)
@@ -42,13 +60,10 @@
 
             chart.draw(dataTable, options);
         }
+
+        $(window).resize(function(){
+            drawChart();
+        });
     </script>
+{% endblock %}
 
-
-</head>
-<body>
-    <h1><a href="">오늘의 예약현황</a></h1>
-
-    <div id="timeline"></div>
-</body>
-</html>

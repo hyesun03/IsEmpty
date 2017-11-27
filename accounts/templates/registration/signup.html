@@ -1,27 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <form id="signup" method="post" action="./">
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+
+{% block title %}회원가입{% endblock %}
+
+{% block body %}
+    <form id="signup" method="post">
         {% csrf_token %}
 
-        <input type="hidden" name="next" value="" />
-        <label for="{{ form.username.id_for_label }}">username</label>
-        <input class="form-control" id="{{ form.username.id_for_label }}" maxlength="30" name="{{ form.username.html_name }}" type="text" /></br>
-        <label for="{{ form.name.id_for_label }}">name</label>
-        <input class="form-control" id="{{ form.name.id_for_label }}" maxlength="15" name="{{ form.name.html_name }}" type="text" /></br>
-        <label for="{{ form.student_id.id_for_label }}">student_id</label>
-        <input class="form-control" id="{{ form.student_id.id_for_label }}" maxlength="10" name="{{ form.student_id.html_name }}" type="text" /></br>
-        <label for="{{ form.email.id_for_label }}">email</label>
-        <input class="form-control" id="{{ form.email.id_for_label }}" maxlength="50" name="{{ form.email.html_name }}" type="text" /></br>
-        <label for="{{ form.phone_number.id_for_label }}">phone_number</label>
-        <input class="form-control" id="{{ form.phone_number.id_for_label }}" maxlength="15" name="{{ form.phone_number.html_name }}" type="text" /></br>
-        <label for="{{ form.password.id_for_label }}">패스워드</label>
-        <input class="form-control" id="{{ form.password.id_for_label }}" maxlength="120" name="{{ form.password.html_name }}" type="password" /></br>
-        <button type="submit">로그인</button>
+        <label for="{{ form.username.id_for_label }}">ID</label>
+        <input class="form-control" id="{{ form.username.id_for_label }}" maxlength="30" name="{{ form.username.html_name }}" type="text" />
+        <br>
+
+        <label for="{{ form.name.id_for_label }}">이름</label>
+        <input class="form-control" id="{{ form.name.id_for_label }}" maxlength="15" name="{{ form.name.html_name }}" type="text" />
+        <br>
+
+        <label for="{{ form.student_id.id_for_label }}">학번</label>
+        <input class="form-control" id="{{ form.student_id.id_for_label }}" maxlength="10" name="{{ form.student_id.html_name }}" type="text" />
+        <br>
+
+        <label for="{{ form.email.id_for_label }}">이메일</label>
+        <input class="form-control" id="{{ form.email.id_for_label }}" maxlength="50" name="{{ form.email.html_name }}" type="text" />
+        <br>
+
+        <label for="{{ form.phone_number.id_for_label }}">연락처 (폰 번호)</label>
+        <input class="form-control" id="{{ form.phone_number.id_for_label }}" maxlength="15" name="{{ form.phone_number.html_name }}" type="text" />
+        <br>
+
+        <label for="{{ form.password.id_for_label }}">비밀번호</label>
+        <input class="form-control" id="{{ form.password.id_for_label }}" maxlength="120" name="{{ form.password.html_name }}" type="password" />
+        <br>
+
+        <button type="submit" class="btn btn-primary">회원가입</button>
     </form>
-</body>
-</html>
+{% endblock %}

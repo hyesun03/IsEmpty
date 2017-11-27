@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+
+{% block title %}예약 수정{% endblock %}
+
+{% block body %}
+    <h1>아래 예약을 수정하시겠습니까?</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">예약 수정</button>
+        {% endbuttons %}
+    </form>
+{% endblock %}

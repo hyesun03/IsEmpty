@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+
+{% block title %}예약 취소{% endblock %}
+
+{% block body %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <h1>아래 예약을 취소 하시겠습니까?</h1>
+        <p>유저 ID: {{ booking.user.username }}</p>
+        <p>강의실: {{ booking.room.room_number }}</p>
+        <p>예약일: {{ booking.book_date }}</p>
+        <p>예약시간: {{ booking.start_hour }}:{{ booking.start_min }} - {{ booking.end_hour }}:{{ booking.end_min }}</p>
+        <p>이용목적: {{ booking.purpose }}</p>
+        <p>이용자수: {{ booking.participants }}</p>
+
+        <button type="submit" class="btn btn-primary">예</button>
+        <button type="submit" class="btn btn-danger" name="cancel">아니요</button>
+    </form>
+{% endblock %}
