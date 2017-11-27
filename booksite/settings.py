@@ -36,6 +36,11 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'accounts',
+    # The following apps are required:
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'booking',
     'bootstrap3',
     'django.contrib.admin',
@@ -44,11 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # The following apps are required:
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.facebook'
 ]
