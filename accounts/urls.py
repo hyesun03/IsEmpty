@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
 from .views import Signup, Signup_ok, Profile, Info
 
@@ -14,5 +14,7 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, name='login_url'),
     url(r'^logout/$', auth_views.logout, {'next_page' : '/login/'}),
     url(r'^signup/$', Signup.as_view(), name='signup_url'),
-    url(r'^signup_ok/$', Signup_ok.as_view(), name='success_signup_url')
+    url(r'^signup_ok/$', Signup_ok.as_view(), name='success_signup_url'),
+    url(r'^accounts/', include('allauth.urls')),
+
 ]
