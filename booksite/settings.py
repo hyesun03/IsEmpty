@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',ㄴ
+    'allauth.socialaccount.providers.facebook',
     # The following apps are required:
     'django.contrib.sites',
     'django.contrib.admin',
