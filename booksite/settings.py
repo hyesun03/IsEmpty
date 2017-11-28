@@ -36,13 +36,15 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'accounts',
+    'booking',
+    'bootstrap3',
+
     # The following apps are required:
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'booking',
-    'bootstrap3',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
