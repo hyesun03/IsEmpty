@@ -1,6 +1,9 @@
 from django import forms
 from .models import Booking
 
+from bootstrap3_datetime.widgets import DateTimePicker
+
+
 class BookingCreateForm(forms.ModelForm):
     class Meta:
         model = Booking
@@ -17,4 +20,8 @@ class BookingCreateForm(forms.ModelForm):
             'end_min': '분 까지',
             'purpose': '이용목적',
             'participants': '이용자수'
+        }
+
+        widgets = {
+            'book_date': DateTimePicker(options={"format": "YYYY-MM-DD"})
         }
