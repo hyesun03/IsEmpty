@@ -27,7 +27,7 @@ class Booking(models.Model):
     is_delete = models.BooleanField(default=False)
     delete_date = models.DateTimeField(blank=True, null=True)
 
-    book_date = models.DateField(default=timezone.now())
+    book_date = models.DateField(default=timezone.now)
     start_hour = models.CharField(choices=HOURS, default='18', max_length=2)
     start_min = models.CharField(choices=MINUTES, default='00', max_length=2)
     end_hour = models.CharField(choices=HOURS, default='18', max_length=2)

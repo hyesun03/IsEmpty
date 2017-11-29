@@ -55,7 +55,9 @@ INSTALLED_APPS = [
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.facebook'
 ]
-SITE_ID = 4
+
+# 굳이 개발 할 때는 지정안해줘도 되므로 주석처리 함
+# SITE_ID = 4
 
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {

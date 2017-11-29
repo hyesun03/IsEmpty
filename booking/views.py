@@ -21,10 +21,10 @@ class BookingChartView(View):
         queryset = Booking.alive_objects.all()
         date = self.request.GET.get('datepick')
 
-        if date:
-            data = queryset.filter(Q(book_date=date))
-        else:
-            data = queryset.filter(Q(book_date=str(timezone.now().date())))
+        if date is None:
+            date = timezone.now().date()
+
+        data = queryset.filter(Q(book_date=date))
 
         booking_list = []
 
@@ -42,7 +42,7 @@ class BookingChartView(View):
             end = "new Date(0,0,0," + str(i.end_hour) + "," + str(i.end_min) + ")"
             booking_list.append([i.room.room_number+"호", i.user.name, '', start, end])
 
-        return render(request, self.template_name, {'booking_list': booking_list})
+        return render(request, self.template_name, {'booking_list': booking_list, 'date': date})
 
 
 class BookingCreateView(FormView, LoginRequiredMixin):
