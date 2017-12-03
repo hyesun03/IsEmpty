@@ -1,0 +1,20 @@
+#content {
+    width: 50%;
+    margin: 0 auto;
+}
+
+/* 태블릿 */
+@media (max-width: 768px) {
+    #content {
+        margin: 0 auto;
+        width: 60%;
+    }
+}
+
+/* 모바일 */
+@media (max-width: 360px) {
+    #content {
+        margin: 0 auto;
+        width: 80%;
+    }
+}

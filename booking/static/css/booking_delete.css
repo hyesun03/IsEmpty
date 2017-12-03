@@ -1,0 +1,44 @@
+#content {
+    margin: 0 auto;
+    width: 50%;
+}
+
+#warn-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* 태블릿 */
+@media (max-width: 768px) {
+    #content {
+        margin: 0 auto;
+        width: 60%;
+    }
+
+    #warn-text {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    table {
+        font-size: 15px;
+    }
+}
+
+/* 모바일 */
+@media (max-width: 360px) {
+    #content {
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    #warn-text {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    table {
+        font-size: 13px;
+    }
+}
+g
