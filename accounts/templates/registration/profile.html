@@ -18,8 +18,29 @@
         <h1> {{ user.username }}의 마이페이지 </h1>
         <li><a href="./info">회원정보 수정</a></li>
         <li><a href="./password_change">비밀번호 변경</a></li>
-        <li>예약 현황(나중에 합쳐야됩니다)</li>
         <li><a href="/logout">로그아웃</a></li>
+
+
+        <table class="table table-striped">
+            <tr>
+                <th>예약일</th>
+                <th>예약시간</th>
+                <th>이용목적</th>
+                <th>이용자수</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+            {% for booking in booking_list %}
+                <tr>
+                    <td>{{ booking.book_date }}</td>
+                    <td>{{ booking.start_hour }}:{{ booking.start_min }} - {{ booking.end_hour }}:{{ booking.end_min }}</td>
+                    <td>{{ booking.purpose }}</td>
+                    <td>{{ booking.participants }}</td>
+                    <td onclick="window.location.href='/booking/{{ booking.id }}/update/'" style="color: blue; cursor:pointer;">수정</td>
+                    <td onclick="window.location.href='/booking/{{ booking.id }}/delete/'" style="color: red; cursor:pointer;">삭제</td>
+                </tr>
+            {% endfor %}
+        </table>
     {% else %}
         <script>
             location.href="/login";
