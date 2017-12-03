@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% load bootstrap3 %}
 
@@ -9,18 +10,45 @@
 
 {% block title %}예약 취소{% endblock %}
 
-{% block body %}
-    <form action="" method="post">
-        {% csrf_token %}
-        <h1>아래 예약을 취소 하시겠습니까?</h1>
-        <p>유저 ID: {{ booking.user.username }}</p>
-        <p>강의실: {{ booking.room.room_number }}</p>
-        <p>예약일: {{ booking.book_date }}</p>
-        <p>예약시간: {{ booking.start_hour }}:{{ booking.start_min }} - {{ booking.end_hour }}:{{ booking.end_min }}</p>
-        <p>이용목적: {{ booking.purpose }}</p>
-        <p>이용자수: {{ booking.participants }}</p>
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/booking_delete.css' %}">
+{% endblock %}
 
-        <button type="submit" class="btn btn-primary">예</button>
-        <button type="submit" class="btn btn-danger" name="cancel">아니요</button>
-    </form>
+{% block body %}
+    <div id="content">
+        <p id="warn-text">아래 예약을 취소하시겠습니까?</p>
+        <form method="post">
+            {% csrf_token %}
+
+            <table class="table table-striped">
+                <tr>
+                    <td>유저 ID</td>
+                    <td>{{ booking.user.username }}</td>
+                </tr>
+                <tr>
+                    <td>강의실</td>
+                    <td>{{ booking.room.room_number }}</td>
+                </tr>
+                <tr>
+                    <td>예약일</td>
+                    <td>{{ booking.book_date }}</td>
+                </tr>
+                <tr>
+                    <td>예약시간</td>
+                    <td>{{ booking.start_hour }}:{{ booking.start_min }} - {{ booking.end_hour }}:{{ booking.end_min }}</td>
+                </tr>
+                <tr>
+                    <td>이용목적</td>
+                    <td>{{ booking.purpose }}</td>
+                </tr>
+                <tr>
+                    <td>이용자수</td>
+                    <td>{{ booking.participants }}</td>
+                </tr>
+            </table>
+
+            <button type="submit" class="btn btn-primary">예</button>
+            <button type="submit" class="btn btn-danger" name="cancel">아니요</button>
+        </form>
+    </div>
 {% endblock %}
