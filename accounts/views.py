@@ -1,10 +1,9 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, FormView, View
-from django.core.urlresolvers import reverse
-from .models import User
+from django.views.generic import TemplateView, View, ListView
+
 from .form import UserForm, InfoForm
-# Create your views here.
+from booking.models import Booking
+
 
 class Signup(View):
     def get(self, request):
@@ -23,8 +22,13 @@ class Signup(View):
 class Signup_ok(TemplateView):
     template_name = 'registration/success_signup.html'
 
-class Profile(TemplateView):
+class Profile(ListView):
+    model = Booking
     template_name = 'registration/profile.html'
+
+    def get_queryset(self):
+        queryset = Booking.alive_objects.all()
+        return queryset
 
 class Info(View):
     def get(self, request):
