@@ -1,3 +1,64 @@
 ul {
     list-style-type: none;
 }
+
+table {
+    /*min-width: 500px;*/
+}
+
+#vertical-bar {
+    color: #888;
+}
+
+#profile-tab {
+    margin-bottom: 5px;
+}
+
+.profile-text {
+    font-size: 16px;
+}
+
+#vertical-bar {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+/* 태블릿 */
+@media (max-width: 768px) {
+    table {
+        font-size: 13px;
+    }
+
+    #profile-tab {
+        margin-bottom: 4px;
+    }
+
+    .profile-text {
+        font-size: 14px;
+    }
+
+    #vertical-bar {
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+}
+
+/* 모바일 */
+@media (max-width: 360px) {
+    table {
+        font-size: 12px;
+    }
+
+    #profile-tab {
+        margin-bottom: 3px;
+    }
+
+    .profile-text {
+        font-size: 13px;
+    }
+
+    #vertical-bar {
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+}

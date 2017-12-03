@@ -17,10 +17,13 @@
 {% block body %}
 <ul>
     {% if user.is_active %}
-        <h1> {{ user.username }}의 마이페이지 </h1>
-        <li><a href="./info">회원정보 수정</a></li>
-        <li><a href="./password_change">비밀번호 변경</a></li>
-        <li><a href="/logout">로그아웃</a></li>
+        <div id="profile-tab">
+            <span class="profile-text"><a href="./info">회원정보 수정</a></span>
+            <span class="profile-text" id="vertical-bar">|</span>
+            <span class="profile-text"><a href="./password_change">비밀번호 변경</a></span>
+            <span class="profile-text" id="vertical-bar">|</span>
+            <span class="profile-text"><a href="/logout">로그아웃</a></span>
+        </div>
 
         <table class="table table-striped">
             <tr>
