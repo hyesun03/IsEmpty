@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% load staticfiles %}
 
 {% load bootstrap3 %}
@@ -11,6 +10,9 @@
 
 {% block title %}마이페이지{% endblock %}
 
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
 
 {% block body %}
 <ul>
