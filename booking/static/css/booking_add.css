@@ -1,0 +1,41 @@
+#content {
+    margin: 0 auto;
+    width: 50%;
+}
+
+#id_start_hour {
+    width: 80px;
+}
+
+#id_start_min {
+    width: 80px;
+}
+
+#id_end_hour {
+    width: 80px;
+}
+
+#id_end_min {
+    width: 80px;
+}
+
+#booking-add-btn {
+    margin-left: calc(50% - 40px);
+}
+
+/* 태블릿 */
+@media (max-width: 768px) {
+    #content {
+        margin: 0 auto;
+        width: 60%;
+    }
+}
+
+/* 모바일 */
+@media (max-width: 360px) {
+    #content {
+        margin: 0 auto;
+        width: 80%;
+    }
+}
+
